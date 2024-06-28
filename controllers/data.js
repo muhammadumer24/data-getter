@@ -60,7 +60,7 @@ const getCommonData = async (req, res) => {
   try {
     const { q } = req.query;
     const allData = await dataModel
-      .find({},"query.google_query.url query.google_news_query.url query.querySearch -_id -location -date -language -plugin_id -query.google_query.heading -query.google_news_query.heading -query.google_news_query.time_stamp")
+      .find({},"query.google_query.url query.google_news_query.url query.querySearch -_id -location -date -language -plugin_id")
     let google_query_url = new Set();
     let google_query_news_url = new Set();
     let google_url_count = [];
