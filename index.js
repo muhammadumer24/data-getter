@@ -24,7 +24,7 @@ const run =async()=>{
   //connect to database
   await cnt(process.env.db_url)
   //starting the app
-  app.listen(process.env.PORT, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log(`Running on port ${process.env.PORT}`)
   })
 }
