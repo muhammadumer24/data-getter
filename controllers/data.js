@@ -64,6 +64,7 @@ const getCommonData = async (req, res) => {
       .select(
         "query.google_query.url query.google_news_query.url query.querySearch -_id"
       );
+      console.log(allData)
     let google_query_url = new Set();
     let google_query_news_url = new Set();
     let google_url_count = [];
