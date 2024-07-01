@@ -31,7 +31,7 @@ const filterData = async (req, res) => {
     if (plugin_id) {
       filter = { ...filter, plugin_id };
     }
-    const data = await dataModel.find(filter);
+    const data = await dataModel.find(filter).sort({ 'query.querySearch': 1 });
     res.send(data);
   } catch (error) {
     res.sendStatus(500);
