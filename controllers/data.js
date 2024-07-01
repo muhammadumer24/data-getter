@@ -2,7 +2,12 @@ const dataModel = require("../models/data");
 const addData = async (req, res) => {
   try {
     const { query, date, location, plugin_id, language } = req.body;
-    const addData = await dataModel.create({
+    const data=await dataModel.find({date,plugin_id})
+    if(data){
+      res.sendStatus(200)
+      return
+    }
+     await dataModel.create({
       query,
       date,
       location,
@@ -43,11 +48,11 @@ const filterData = async (req, res) => {
       },
       {
         $group: {
-          _id:"$_id",
+          _id: "$_id",
           language: { $first: '$language' }, // Preserve other fields
-      plugin_id: { $first: '$plugin_id' },
-      location: { $first: '$location' },
-      date:{$first:'$date'},
+          plugin_id: { $first: '$plugin_id' },
+          location: { $first: '$location' },
+          date: { $first: '$date' },
           query: { $push: '$query' }, // Reassemble the 'query' array
         },
       },
@@ -115,13 +120,13 @@ const getCommonData = async (req, res) => {
 };
 const getSummary = async (req, res) => {
   try {
-    const {q}= req.query
+    const { q } = req.query
     let findInGoogle_news_query = false;
     let data = await dataModel.find(
       { "query.google_query.url": q },
       "location -_id plugin_id language date"
     );
-    if (data.length===0) {
+    if (data.length === 0) {
       data = await dataModel.find(
         { "query.google_news_query.url": q },
         "location -_id plugin_id language date"
