@@ -229,10 +229,20 @@ const getSummary = async (req, res) => {
     res.sendStatus(500);
   }
 };
+const deleteLocation=async(req,res)=>{
+  try{
+    const {location}=req.query
+    await dataModel.deleteMany({location})
+  }catch(err){
+    console.log(err)
+    res.sendStatus(500)
+  }
+}
 module.exports = {
   addData,
   filterData,
   deleteAll,
   getCommonData,
   getSummary,
+  deleteLocation
 };
