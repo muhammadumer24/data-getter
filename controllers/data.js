@@ -43,7 +43,9 @@ const filterData = async (req, res) => {
       },
       {
         $group: {
-          _id: '$_id', // Group back by the original document ID
+          language:'$language',
+          plugin_id:'$plugin_id',
+          location:"$location",
           query: { $push: '$query' }, // Reassemble the 'query' array
         },
       },
