@@ -88,9 +88,13 @@ const getCommonData = async (req, res) => {
       doc.query.map((item) => {
         if (item.querySearch === q) {
           item.google_query.map((item) => {
+            let url=new URL(item.url)
+            url=`${url.origin}${url.path}`
             google_query_url.add(item.url);
           });
           item.google_news_query.map((item) => {
+            let url=new URL(item.url)
+            url=`${url.origin}${url.path}`
             google_query_news_url.add(item.url);
           });
         }
