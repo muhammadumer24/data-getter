@@ -43,6 +43,7 @@ const filterData = async (req, res) => {
       },
       {
         $group: {
+          _id:"$_id",
           language: { $first: '$language' }, // Preserve other fields
       plugin_id: { $first: '$plugin_id' },
       location: { $first: '$location' },
