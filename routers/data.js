@@ -1,14 +1,13 @@
 const router = require("express").Router()
 const {
   addData,
-  getAllData,
   filterData,
   deleteAll,
   getCommonData,
   getSummary,
 } = require("../controllers/data")
 
-router.route("/").post(addData).get(getAllData)
+router.route("/").post(addData)
 router.post("/filter", filterData)
 router.get('/delete',deleteAll)
 router.get('/common',getCommonData)

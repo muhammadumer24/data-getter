@@ -15,15 +15,6 @@ const addData = async (req, res) => {
     res.sendStatus(500);
   }
 };
-const getAllData = async (req, res) => {
-  try {
-    const data = await dataModel.find();
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
-};
 const filterData = async (req, res) => {
   try {
     let filter = {};
@@ -64,7 +55,6 @@ const getCommonData = async (req, res) => {
       .select(
         "query.google_query.url query.google_news_query.url query.querySearch -_id"
       );
-      console.log(allData)
     let google_query_url = new Set();
     let google_query_news_url = new Set();
     let google_url_count = [];
@@ -212,7 +202,6 @@ const getSummary = async (req, res) => {
 };
 module.exports = {
   addData,
-  getAllData,
   filterData,
   deleteAll,
   getCommonData,
