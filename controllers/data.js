@@ -43,9 +43,10 @@ const filterData = async (req, res) => {
       },
       {
         $group: {
-          language:'$language',
-          plugin_id:'$plugin_id',
-          location:"$location",
+          language: { $first: '$language' }, // Preserve other fields
+      plugin_id: { $first: '$plugin_id' },
+      location: { $first: '$location' },
+      date:{$first:'$date'},
           query: { $push: '$query' }, // Reassemble the 'query' array
         },
       },
