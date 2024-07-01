@@ -31,7 +31,23 @@ const filterData = async (req, res) => {
     if (plugin_id) {
       filter = { ...filter, plugin_id };
     }
-    const data = await dataModel.find(filter).sort({ 'query.querySearch': 1 });
+    const data = await dataModel.aggregate([
+      {
+        $match: filter, // Apply your filter conditions
+      },
+      {
+        $unwind: '$query', // Unwind the 'query' array
+      },
+      {
+        $sort: { 'query.querySearch': 1 }, // Sort by 'querySearch'
+      },
+      {
+        $group: {
+          _id: '$_id', // Group back by the original document ID
+          query: { $push: '$query' }, // Reassemble the 'query' array
+        },
+      },
+    ]);
     res.send(data);
   } catch (error) {
     res.sendStatus(500);
