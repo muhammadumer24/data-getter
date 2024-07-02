@@ -3,7 +3,7 @@ const addData = async (req, res) => {
   try {
     const { query, date, location, plugin_id, language } = req.body;
     const data=await dataModel.find({date,plugin_id})
-    if(data){
+    if(data.length===0){
       console.log(data)
       res.sendStatus(404)
       return
