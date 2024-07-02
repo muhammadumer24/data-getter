@@ -14,6 +14,7 @@ const addData = async (req, res) => {
       plugin_id,
       language,
     });
+    console.log("Data added at "+ Date.now())
     res.sendStatus(200);
   } catch (error) {
     console.log("Data Making Error:", error);
