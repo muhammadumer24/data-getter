@@ -3,12 +3,12 @@ const addData = async (req, res) => {
   try {
     const { query, date, location, plugin_id, language } = req.body;
     const data=await dataModel.find({date,plugin_id})
-    if(data.length===0){
+    if(data.length!==0){
       console.log(data)
       res.sendStatus(404)
       return
     }
-     await dataModel.create({
+     const dataMade=await dataModel.create({
       query,
       date,
       location,
@@ -16,7 +16,7 @@ const addData = async (req, res) => {
       language,
     });
     console.log("Data added at "+ Date.now())
-    res.sendStatus(200);
+    res.send(dataMade);
   } catch (error) {
     console.log("Data Making Error:", error);
     res.sendStatus(500);
