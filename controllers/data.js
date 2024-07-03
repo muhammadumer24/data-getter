@@ -1,4 +1,16 @@
 const dataModel = require("../models/data");
+const handleChromeBug=async(id,date)=>{
+  try{
+    const duplicatedData=await dataModel.find({plugin_id:id,date})
+    if(duplicatedData.length>1){
+      for (let index = 0; index < array.length-1; index++) {
+        await dataModel.deleteOne({plugin_id,date})
+      }
+    }
+  }catch(err){
+    console.log(err)
+  }
+}
 const addData = async (req, res) => {
   try {
     const { query, date, location, plugin_id, language } = req.body;
@@ -15,7 +27,7 @@ const addData = async (req, res) => {
       plugin_id,
       language,
     });
-    console.log("Data added at "+ Date.now())
+    handleChromeBug(plugin_id,date)
     res.send(dataMade);
   } catch (error) {
     console.log("Data Making Error:", error);
