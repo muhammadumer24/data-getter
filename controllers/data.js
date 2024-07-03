@@ -246,6 +246,7 @@ const deleteLocation=async(req,res)=>{
   try{
     const {location}=req.query
     await dataModel.deleteMany({location})
+    res.send(202)
   }catch(err){
     console.log(err)
     res.sendStatus(500)

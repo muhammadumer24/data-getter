@@ -13,5 +13,5 @@ router.post("/filter", filterData)
 router.get('/delete',deleteAll)
 router.get('/common',getCommonData)
 router.get('/summary',getSummary)
-router.get('/deleteMsny',deleteLocation)
+router.get('/delete-location',deleteLocation)
 module.exports = router
