@@ -43,5 +43,4 @@ const dataSchema = new mongoose.Schema({
     },
   ],
 });
-dataSchema.index({ plugin_id: 1, date: 1 }, { unique: true });
 module.exports = mongoose.model("dataModel", dataSchema);
