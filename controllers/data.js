@@ -3,7 +3,7 @@ const handleChromeBug=async(id,date)=>{
   try{
     const duplicatedData=await dataModel.find({plugin_id:id,date})
     if(duplicatedData.length>1){
-      for (let index = 0; index < array.length-1; index++) {
+      for (let index = 0; index < duplicatedData.length-1; index++) {
         await dataModel.deleteOne({plugin_id,date})
       }
     }
