@@ -27,6 +27,7 @@ const addData = async (req, res) => {
       language,
     });
     handleChromeBug(plugin_id,date)
+    console.log(plugin_id)
     res.send(dataMade);
   } catch (error) {
     console.log("Data Making Error:", error);
