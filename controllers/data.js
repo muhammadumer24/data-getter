@@ -2,6 +2,12 @@ const dataModel = require("../models/data");
 const addData = async (req, res) => {
   try {
     const { query, date, location, plugin_id, language } = req.body;
+    const data=await dataModel.findOne({date,plugin_id})
+    if(data){
+      console.log(data)
+      res.sendStatus(409)
+      return
+    }
      const dataMade=await dataModel.create({
       query,
       date,
