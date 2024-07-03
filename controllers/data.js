@@ -26,7 +26,7 @@ const addData = async (req, res) => {
       plugin_id,
       language,
     });
-    handleChromeBug(plugin_id,date)
+    // handleChromeBug(plugin_id,date)
     console.log(plugin_id,dataMade)
     res.send(dataMade);
   } catch (error) {
