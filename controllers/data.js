@@ -14,6 +14,7 @@ const handleChromeBug=async(id,date)=>{
 const addData = async (req, res) => {
   try {
     const { query, date, location, plugin_id, language } = req.body;
+    console.log(req.body)
     const data=await dataModel.findOne({date,plugin_id})
     if(data){
       res.sendStatus(409)
